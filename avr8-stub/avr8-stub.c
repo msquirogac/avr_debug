@@ -972,6 +972,9 @@ static bool_t gdb_parse_packet(const uint8_t *buff)
 		else if(memcmp_PF(gdb_ctx->buff, (uintptr_t)PSTR("qsThreadInfo"), 12) == 0)
 			/* send end of list */
 			gdb_send_reply("l");
+		else if(memcmp_PF(gdb_ctx->buff, (uintptr_t)PSTR("qRcmd"), 5) == 0)
+			/* custom commands */
+			gdb_send_reply("OK");
 		else
 			gdb_send_reply("");  /* not supported */
 
